@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: linuxserver/nzbhydra2
+  repository: linuxserver/nzbhydra
   tag: latest
   pullPolicy: IfNotPresent
 

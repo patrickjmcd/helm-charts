@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "nzbhydra2.fullname" . -}}
+{{- $fullName := include "nzbhydra.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app: {{ template "nzbhydra2.name" . }}
-    chart: {{ template "nzbhydra2.chart" . }}
+    app: {{ template "nzbhydra.name" . }}
+    chart: {{ template "nzbhydra.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
