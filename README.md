@@ -1,6 +1,6 @@
 ## Welcome to patrickjmcd Helm Catalog
 
--   helm repo add patrickjmcd https://patrickjmcd.github.io/geek-charts
+-   helm repo add patrickjmcd https://patrickjmcd.github.io/helm-charts
 
 -   do not forget to add myvolume :)
 
@@ -8,7 +8,7 @@ helmfile sample :
 
     repositories:
       - name: patrickjmcd
-        url: https://patrickjmcd.github.io/geek-charts
+        url: https://patrickjmcd.github.io/helm-charts
 
     releases:
       - name: xavier-emby
