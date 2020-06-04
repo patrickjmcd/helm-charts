@@ -1,20 +1,19 @@
-## Welcome to Bananaspliff Helm Catalog
+## Welcome to patrickjmcd Helm Catalog
 
-- helm repo add bananaspliff https://bananaspliff.github.io/geek-charts
+-   helm repo add patrickjmcd https://patrickjmcd.github.io/geek-charts
 
-- do not forget to add myvolume :)
-
+-   do not forget to add myvolume :)
 
 helmfile sample :
 
     repositories:
-      - name: bananaspliff
-        url: https://bananaspliff.github.io/geek-charts
+      - name: patrickjmcd
+        url: https://patrickjmcd.github.io/geek-charts
 
     releases:
       - name: xavier-emby
         namespace: xavier
-        chart: bananaspliff/emby
+        chart: patrickjmcd/emby
         version: 0.1.0
         values:
              - image:
@@ -22,15 +21,15 @@ helmfile sample :
              - ingress:
                 enabled: true
                 hosts:
-                  - emby.bananaspliff.org
+                  - emby.patrickjmcd.org
                 tls:
                   - hosts:
-                      - emby.bananaspliff.org
-                    secretName: emby-bananaspliff.org
+                      - emby.patrickjmcd.org
+                    secretName: emby-patrickjmcd.org
 
       - name: xavier-sftp
         namespace: xavier
-        chart: bananaspliff/sftp
+        chart: patrickjmcd/sftp
         version: 0.1.0
         values:
             - image:

@@ -25,11 +25,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - ombi.bananaspliff.org
+    - ombi.patrickjmcd.org
   tls:
-   - secretName: ombi-bananaspliff-org
+   - secretName: ombi-patrickjmcd-org
      hosts:
-       - ombi.bananaspliff.org
+       - ombi.patrickjmcd.org
 
 volumes:
   - name: myvolume

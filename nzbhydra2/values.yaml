@@ -23,11 +23,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - nzbhydra.bananaspliff.org
+    - nzbhydra.patrickjmcd.org
   tls:
-   - secretName: nzbhydra-bananaspliff-org
+   - secretName: nzbhydra-patrickjmcd-org
      hosts:
-       - nzbhydra.bananaspliff.org
+       - nzbhydra.patrickjmcd.org
 
 volumes:
   - name: myvolume

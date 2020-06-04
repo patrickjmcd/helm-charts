@@ -23,11 +23,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - jackett.bananaspliff.org
+    - jackett.patrickjmcd.org
   tls:
-   - secretName: jackett-bananaspliff-org
+   - secretName: jackett-patrickjmcd-org
      hosts:
-       - jackett.bananaspliff.org
+       - jackett.patrickjmcd.org
 
 volumes:
   - name: myvolume

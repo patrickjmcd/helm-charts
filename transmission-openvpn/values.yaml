@@ -49,11 +49,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - transmission.bananaspliff.org
+    - transmission.patrickjmcd.org
   tls:
-   - secretName: transmission-bananaspliff-org
+   - secretName: transmission-patrickjmcd-org
      hosts:
-       - transmission.bananaspliff.org
+       - transmission.patrickjmcd.org
 
 # You have 2 options to deploy your custom openvpn config:
 #

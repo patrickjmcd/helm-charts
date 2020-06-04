@@ -17,11 +17,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - filebrowser.bananaspliff.org
+    - filebrowser.patrickjmcd.org
   tls:
-   - secretName: filebrowser-bananaspliff-org
+   - secretName: filebrowser-patrickjmcd-org
      hosts:
-       - filebrowser.bananaspliff.org
+       - filebrowser.patrickjmcd.org
 
 volumes:
   - name: myvolume

@@ -23,11 +23,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - radarr.bananaspliff.org
+    - radarr.patrickjmcd.org
   tls:
-   - secretName: radarr-bananaspliff-org
+   - secretName: radarr-patrickjmcd-org
      hosts:
-       - radarr.bananaspliff.org
+       - radarr.patrickjmcd.org
 
 volumes:
   - name: myvolume

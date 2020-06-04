@@ -23,11 +23,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - lidarr.bananaspliff.org
+    - lidarr.patrickjmcd.org
   tls:
-   - secretName: lidarr-bananaspliff-org
+   - secretName: lidarr-patrickjmcd-org
      hosts:
-       - lidarr.bananaspliff.org
+       - lidarr.patrickjmcd.org
 
 volumes:
   - name: myvolume
