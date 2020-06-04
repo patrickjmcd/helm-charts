@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "nzbhydra2.fullname" . }}
+  labels:
+    app: {{ template "nzbhydra2.name" . }}
+    chart: {{ template "nzbhydra2.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 5076
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "nzbhydra2.name" . }}
+    release: {{ .Release.Name }}
