@@ -1,0 +1,54 @@
+
+replicaCount: 1
+
+image:
+  repository: ghost
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env:
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - ghost.patrickjmcd.org
+  tls:
+   - secretName: ghost-patrickjmcd-org
+     hosts:
+       - ghost.patrickjmcd.org
+
+volumes:
+  - name: myvolume
+    persistentVolumeClaim:
+      claimName: myvolume
+
+volumeMounts:
+  - name: myvolume
+    mountPath: "/var/lib/ghost/content"
+    subPath: "configs/ghost"
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 0.1
+  limits:
+    memory: 256Mi
+    cpu: 0.5
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
