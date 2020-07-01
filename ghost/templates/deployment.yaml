@@ -29,7 +29,7 @@ spec:
 {{ toYaml .Values.env | indent 12 }}
           ports:
             - name: http
-              containerPort: 8989
+              containerPort: 2368
               protocol: TCP
           volumeMounts:
 {{ toYaml .Values.volumeMounts | indent 12 }}
