@@ -33,7 +33,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 80
+      targetPort: {{ .Values.config_ui_port }}
       protocol: TCP
       name: homebridge-ui
   selector:
