@@ -19,7 +19,6 @@ spec:
         app: {{ template "homebridge.name" . }}
         release: {{ .Release.Name }}
     spec:
-      replicas: {{ .Values.replicaCount }}
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}
       hostNetwork: true
