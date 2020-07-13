@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: America/Chicago
+  repository: oznu/homebridge
   tag: latest
   pullPolicy: IfNotPresent
 
