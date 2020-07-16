@@ -19,10 +19,10 @@ spec:
         app: {{ template "lidarr.name" . }}
         release: {{ .Release.Name }}
     spec:
-      securityContext:
-        runAsUser: {{ .Values.uid | default 1000 }}
-        runAsGroup: {{ .Values.gid | default 1000 }}
-        fsGroup: {{ .Values.gid | default 1000 }}
+      # securityContext:
+      #   runAsUser: {{ .Values.uid | default 1000 }}
+      #   runAsGroup: {{ .Values.gid | default 1000 }}
+      #   fsGroup: {{ .Values.gid | default 1000 }}
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}
       containers:
@@ -30,7 +30,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-{{ toYaml .Values.env | indent 12 }}
+            - name: PUID
+              value: "{{ .Values.uid | default 1000 }}"
+            - name: PGID
+              value: "{{ .Values.gid | default 1000 }}"
           ports:
             - name: http
               containerPort: 8989
