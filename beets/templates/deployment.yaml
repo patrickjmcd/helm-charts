@@ -34,7 +34,6 @@ spec:
               value: {{ .Values.uid | default 1000 }}
             - name: PGID
               value: {{ .Values.gid | default 1000 }}
-{{ toYaml .Values.env | indent 12 }}
           ports:
             - name: http
               containerPort: 8337
