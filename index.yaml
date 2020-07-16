@@ -3,9 +3,9 @@ entries:
   beets:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.239382-05:00"
+    created: "2020-07-16T10:46:22.557979-05:00"
     description: Beets - the media library management system for obsessive music geeks
-    digest: d35caac402ebe59cda30ba33c76be012ff0cf7fa0bbf0b3ad3f551677a791be2
+    digest: 59c6e40d3f0d182d899bb01975c47d77280c68a8797793e6e2ec7643d70b2cb9
     icon: https://patrickjmcd.github.io/helm-charts/beets/logo/beets.png
     name: beets
     urls:
@@ -14,7 +14,7 @@ entries:
   emby:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.240958-05:00"
+    created: "2020-07-16T10:46:22.562562-05:00"
     description: Emby Server (Media Browser)
     digest: 92abbaa8b39aaf40fb08f58b5fd08e736c787e17567b23ac89d5c26e5e2c595b
     icon: https://bananaspliff.github.io/geek-charts/emby/logo/emby.jpg
@@ -25,7 +25,7 @@ entries:
   filebrowser:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.242048-05:00"
+    created: "2020-07-16T10:46:22.563495-05:00"
     description: Simple Web File Manager
     digest: e223d98810c3c48b95dd6883aa3ae4da3b8d3c59ec8e4c92c9c374a88c997c26
     icon: https://bananaspliff.github.io/geek-charts/filebrowser/logo/filebrowser.svg
@@ -36,9 +36,9 @@ entries:
   ghost:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.245001-05:00"
+    created: "2020-07-16T10:46:22.565227-05:00"
     description: Free and Open-Source Blogging Platform.
-    digest: a6ed0f419a54e7edc4f092464cad95915cac531f190a58e1606d5e53ba05be6a
+    digest: 38dfcd3faaa8269d6ff571a16aa8de4dc9d98794ba4f97ccb5911e4cad1bc6f7
     icon: https://patrickjmcd.github.io/helm-charts/ghost/logo/ghost.png
     name: ghost
     urls:
@@ -47,7 +47,7 @@ entries:
   homebridge:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.25544-05:00"
+    created: "2020-07-16T10:46:22.578565-05:00"
     description: Homebridge
     digest: cf7317e52b5e2a21dc1f433dbe56ce225b5876b0067138728341ecd3b71df329
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -57,7 +57,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.250303-05:00"
+    created: "2020-07-16T10:46:22.572814-05:00"
     description: Homebridge
     digest: fe8e614fcf646633dcb9146bf984b225136c2c9603e6dc5f19838a45e335db80
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -68,7 +68,7 @@ entries:
   jackett:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.257545-05:00"
+    created: "2020-07-16T10:46:22.580446-05:00"
     description: Jackett - shut:p
     digest: 87a66f8ab8fa7563157090dda00ccf1114896cad533d80e8f597977a063310b6
     icon: https://bananaspliff.github.io/geek-charts/jackett/logo/jackett.png
@@ -79,17 +79,17 @@ entries:
   lidarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.261446-05:00"
+    created: "2020-07-16T10:46:22.582429-05:00"
     description: Looks and smells like Sonarr but made for music.
-    digest: 4358610cb1b96af4a1a65dd6fa572c41f6a9e36df8b77f7c50bd1b612327c6d7
-    icon: https://bananaspliff.github.io/geek-charts/lidarr/logo/lidarr.png
+    digest: 661982628c94dc9b69531cb702d85cb39aec7fd819c4d7eac66a178bef5a4aa8
+    icon: https://patrickjmcd.github.io/helm-charts/lidarr/logo/lidarr.png
     name: lidarr
     urls:
     - https://patrickjmcd.github.io/helm-charts/lidarr-0.1.0.tgz
     version: 0.1.0
   myvolume:
   - apiVersion: v1
-    created: "2020-07-15T19:27:29.262105-05:00"
+    created: "2020-07-16T10:46:22.582955-05:00"
     description: PVC ReadWriteMany for current Namespace
     digest: 650967d612fa7daecc43bddf7ba67401768c9a64b58a799168c586dfc9bc9e03
     name: myvolume
@@ -99,7 +99,7 @@ entries:
   nzbget:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.263033-05:00"
+    created: "2020-07-16T10:46:22.584339-05:00"
     description: Efficient Usenet Downloader
     digest: 289a83e1f3c295da9b2a432c0dcf5eefdc80046e79801eb8c8a82eda4ef32b04
     icon: https://bananaspliff.github.io/geek-charts/nzbget/logo/nzbget.png
@@ -110,7 +110,7 @@ entries:
   nzbhydra:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.263954-05:00"
+    created: "2020-07-16T10:46:22.585634-05:00"
     description: Usenet meta search
     digest: 911e98874cae7bbf569e3544f1d15cfbe62af2d3f5ae8b23a461c5824b970462
     icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
@@ -121,7 +121,7 @@ entries:
   ombi:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.264835-05:00"
+    created: "2020-07-16T10:46:22.587284-05:00"
     description: Ombi - Automatic downloader for movies :)
     digest: 8ca5a6dde002ea47201bcf805e2cac0b44409140d9f570e7b412bc8c671a7eb7
     icon: https://bananaspliff.github.io/geek-charts/ombi/logo/ombi.png
@@ -132,7 +132,7 @@ entries:
   plex:
   - apiVersion: v1
     appVersion: 1.16.0.1226-7eb2c8f6f
-    created: "2020-07-15T19:27:29.266344-05:00"
+    created: "2020-07-16T10:46:22.588859-05:00"
     description: Plex Media Server
     digest: 4657f5afdfaeb78c50418c64542e192cf828ab79f7ce32f79687a99b0e0baf96
     home: https://plex.tv/
@@ -152,7 +152,7 @@ entries:
   radarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.268879-05:00"
+    created: "2020-07-16T10:46:22.595647-05:00"
     description: Radarr - Automatic downloader for movies :)
     digest: 8abc8d7e3416e2abb5eb2425736aae44c3092aa1376e9e49e58ab3c038766b5f
     icon: https://bananaspliff.github.io/geek-charts/radarr/logo/radarr.png
@@ -162,7 +162,7 @@ entries:
     version: 0.1.0
   sftp:
   - apiVersion: v1
-    created: "2020-07-15T19:27:29.270877-05:00"
+    created: "2020-07-16T10:46:22.602505-05:00"
     description: A SFTP HELM chart for Kubernetes
     digest: 3b8aa0622b62cf1e806354b03cd9fee7ec3d910f54d631cc24c9a989d759980a
     icon: https://bananaspliff.github.io/geek-charts/sftp/logo/sftp.png
@@ -173,7 +173,7 @@ entries:
   sonarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.272639-05:00"
+    created: "2020-07-16T10:46:22.606633-05:00"
     description: Sonarr - Automatic downloader for TV shows ^^
     digest: 9bb29c94bd8c61ab8ba4d347cc720b5fce1558eeb74613c1771cdc50d6d2ca10
     icon: https://bananaspliff.github.io/geek-charts/sonarr/logo/sonarr.png
@@ -184,7 +184,7 @@ entries:
   transmission-openvpn:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-15T19:27:29.276506-05:00"
+    created: "2020-07-16T10:46:22.614379-05:00"
     description: Transmission torrent client with WebUI while connecting to OpenVPN.
     digest: 31870854145de3f66d3ec94d42cf66e21ffcff16e4898bbd72b9c8198dd669be
     icon: https://bananaspliff.github.io/geek-charts/transmission-openvpn/logo/transmission.png
@@ -192,4 +192,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/transmission-openvpn-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-15T19:27:29.22016-05:00"
+generated: "2020-07-16T10:46:22.555064-05:00"
