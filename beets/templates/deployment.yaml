@@ -30,11 +30,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-{{ toYaml .Values.env | indent 12 }}
             - name: PUID
               value: {{ .Values.uid | default 1000 }}
             - name: PGID
               value: {{ .Values.gid | default 1000 }}
+{{ toYaml .Values.env | indent 12 }}
           ports:
             - name: http
               containerPort: 8337
