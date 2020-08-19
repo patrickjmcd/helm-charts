@@ -1,0 +1,63 @@
+
+replicaCount: 1
+
+image:
+  repository: linuxserver/jellyfin
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env:
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - jellyfin.patrickjmcd.org
+  tls:
+   - secretName: jellyfin-patrickjmcd-org
+     hosts:
+       - jellyfin.patrickjmcd.org
+
+volumes:
+  - name: config
+    persistentVolumeClaim:
+      claimName: nfs-config-jellyfin-claim
+  - name: tv
+    persistentVolumeClaim:
+      claimName: nfs-tv-claim
+  - name: movies
+    persistentVolumeClaim:
+      claimName: nfs-movies-claim
+
+volumeMounts:
+  - name: config
+    mountPath: "/config"
+  - name: tv
+    mountPath: "/data/tvshows"
+  - name: movies
+    mountPath: "/data/movies"
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 0.1
+  limits:
+    memory: 2048Mi
+    cpu: 2
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
