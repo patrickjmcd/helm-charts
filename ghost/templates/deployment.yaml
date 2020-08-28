@@ -18,6 +18,10 @@ spec:
       labels:
         app: {{ template "ghost.name" . }}
         release: {{ .Release.Name }}
+      {{- with .Values.annotations }}
+      annotations:
+      {{ toYaml . | indent 8 }}
+      {{- end }}
     spec:
       securityContext:
         runAsUser: {{ .Values.uid | default 1000 }}
@@ -51,3 +55,4 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+    

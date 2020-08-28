@@ -18,6 +18,10 @@ spec:
       labels:
         app: {{ template "homebridge.name" . }}
         release: {{ .Release.Name }}
+      {{- with .Values.annotations }}
+      annotations:
+      {{ toYaml . | indent 8 }}
+      {{- end }}
     spec:
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}

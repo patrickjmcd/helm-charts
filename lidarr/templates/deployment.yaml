@@ -18,11 +18,11 @@ spec:
       labels:
         app: {{ template "lidarr.name" . }}
         release: {{ .Release.Name }}
+      {{- with .Values.annotations }}
+      annotations:
+      {{ toYaml . | indent 8 }}
+      {{- end }}
     spec:
-      # securityContext:
-      #   runAsUser: {{ .Values.uid | default 1000 }}
-      #   runAsGroup: {{ .Values.gid | default 1000 }}
-      #   fsGroup: {{ .Values.gid | default 1000 }}
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}
       containers:
