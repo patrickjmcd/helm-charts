@@ -19,7 +19,7 @@ releases:
   - name: xavier-emby
     namespace: xavier
     chart: patrickjmcd/emby
-    version: 0.2.0
+    version: 0.2.1
     values:
           - image:
               tag: 3.6.0.2
@@ -35,7 +35,7 @@ releases:
   - name: xavier-sftp
     namespace: xavier
     chart: patrickjmcd/sftp
-    version: 0.2.0
+    version: 0.2.1
     values:
         - image:
             tag: latest
