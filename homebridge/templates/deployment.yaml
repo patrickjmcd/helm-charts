@@ -19,7 +19,7 @@ spec:
         app: {{ template "homebridge.name" . }}
         release: {{ .Release.Name }}
       annotations:
-        {{ toYaml .Values.annotations | indent 8 }}
+{{ toYaml .Values.annotations | indent 8 }}
     spec:
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}

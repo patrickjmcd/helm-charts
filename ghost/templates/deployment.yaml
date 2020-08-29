@@ -19,7 +19,7 @@ spec:
         app: {{ template "ghost.name" . }}
         release: {{ .Release.Name }}
       annotations:
-        {{ toYaml .Values.annotations | indent 8 }}
+{{ toYaml .Values.annotations | indent 8 }}
     spec:
       securityContext:
         runAsUser: {{ .Values.uid | default 1000 }}
