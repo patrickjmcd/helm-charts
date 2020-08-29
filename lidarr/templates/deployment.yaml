@@ -18,10 +18,8 @@ spec:
       labels:
         app: {{ template "lidarr.name" . }}
         release: {{ .Release.Name }}
-      {{- with .Values.annotations }}
       annotations:
-      {{ toYaml . | indent 8 }}
-      {{- end }}
+        {{ toYaml .Values.annotations | indent 8 }}
     spec:
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}
