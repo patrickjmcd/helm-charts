@@ -3,7 +3,7 @@ entries:
   beets:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.797756-05:00"
+    created: "2020-08-29T13:02:21.257894-05:00"
     description: Beets - the media library management system for obsessive music geeks
     digest: 7ab8bb6a79b8c157086c309df4da99f79f1e736daf7c64a4c2ad31b5c79ae01c
     icon: https://patrickjmcd.github.io/helm-charts/beets/logo/beets.png
@@ -14,7 +14,7 @@ entries:
   ghost:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.801694-05:00"
+    created: "2020-08-29T13:02:21.261397-05:00"
     description: Free and Open-Source Blogging Platform.
     digest: cbfff69a1196ad46937b1796a25badbc996b242f939e713e17d45d57be02cf69
     icon: https://patrickjmcd.github.io/helm-charts/ghost/logo/ghost.png
@@ -25,7 +25,7 @@ entries:
   homebridge:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.806422-05:00"
+    created: "2020-08-29T13:02:21.26566-05:00"
     description: Homebridge
     digest: 93f200ef23a3509c9a89b46b0dea22fb6371522bd00ffe4feb39092ecc54f05e
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -36,7 +36,7 @@ entries:
   jellyfin:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.808696-05:00"
+    created: "2020-08-29T13:02:21.267954-05:00"
     description: jellyfin - The Free Software Media System
     digest: e42deefebe46a7b3dbbaf95fd6c8343fb0443391bb290403f5129e647d2dba7f
     icon: https://patrickjmcd.github.io/helm-charts/jellyfin/logo/jellyfin.jpeg
@@ -47,7 +47,7 @@ entries:
   lidarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.810448-05:00"
+    created: "2020-08-29T13:02:21.26989-05:00"
     description: Looks and smells like Sonarr but made for music.
     digest: 8b079e1efa22ac37ace68e9c0a4b83e30d654659e15401ef3eef6fdbf42980b2
     icon: https://patrickjmcd.github.io/helm-charts/lidarr/logo/lidarr.png
@@ -58,7 +58,7 @@ entries:
   nzbget:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.811235-05:00"
+    created: "2020-08-29T13:02:21.270675-05:00"
     description: Efficient Usenet Downloader
     digest: fae4bf046ef2b2da3c8d422e195a70aca0a4ceb02b511001068805f14d9094e0
     icon: https://patrickjmcd.github.io/helm-charts/nzbget/logo/nzbget.png
@@ -69,7 +69,17 @@ entries:
   nzbhydra:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.811906-05:00"
+    created: "2020-08-29T13:02:21.27189-05:00"
+    description: Usenet meta search
+    digest: 3d536821254d9c9d0b98f3a8e3c036960eb754e0b49bdbf5e07c30c475fad273
+    icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
+    name: nzbhydra
+    urls:
+    - https://patrickjmcd.github.io/helm-charts/nzbhydra-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-08-29T13:02:21.271404-05:00"
     description: Usenet meta search
     digest: c48c578d1f2c3f2d6c70683a355665070b4d0eed2518e0559ae39a34f53e560f
     icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
@@ -80,7 +90,7 @@ entries:
   ombi:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.81261-05:00"
+    created: "2020-08-29T13:02:21.272569-05:00"
     description: Ombi - Automatic downloader for movies :)
     digest: cbb4ded4fbe63201476f2f013a174e200c6cb84edf6f8e5b5996f2a6a03eaa21
     icon: https://patrickjmcd.github.io/helm-charts/ombi/logo/ombi.png
@@ -91,7 +101,7 @@ entries:
   plex:
   - apiVersion: v1
     appVersion: 1.16.0.1226-7eb2c8f6f
-    created: "2020-08-29T12:45:35.813831-05:00"
+    created: "2020-08-29T13:02:21.273892-05:00"
     description: Plex Media Server
     digest: c8248453f09fbaaaea7f17b98be8780e26fe4b3ebc9bd5a0e7a419f83266a05f
     home: https://plex.tv/
@@ -111,7 +121,7 @@ entries:
   radarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.815731-05:00"
+    created: "2020-08-29T13:02:21.275737-05:00"
     description: Radarr - Automatic downloader for movies :)
     digest: 0fc7c6fc9307ba4e65add79be5ca78fcd163a499509257db181c9eca25c2b8f3
     icon: https://patrickjmcd.github.io/helm-charts/radarr/logo/radarr.png
@@ -122,7 +132,7 @@ entries:
   sabnzbd:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.816336-05:00"
+    created: "2020-08-29T13:02:21.276592-05:00"
     description: Efficient Usenet Downloader
     digest: 990acfc38fc5727fca7bbe0740adf6018517b9ed56007e07afc3f6a6abc3382b
     icon: https://patrickjmcd.github.io/helm-charts/sabnzbd/logo/sabnzbd.svg
@@ -133,7 +143,7 @@ entries:
   sonarr:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-08-29T12:45:35.818289-05:00"
+    created: "2020-08-29T13:02:21.279747-05:00"
     description: Sonarr - Automatic downloader for TV shows ^^
     digest: 9d15ad52215a2b9c2a9904daf5199321e261d556fe7dd95da3e7b92431202587
     icon: https://patrickjmcd.github.io/helm-charts/sonarr/logo/sonarr.png
@@ -141,4 +151,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/sonarr-0.2.2.tgz
     version: 0.2.2
-generated: "2020-08-29T12:45:35.795982-05:00"
+generated: "2020-08-29T13:02:21.254736-05:00"
