@@ -1,0 +1,56 @@
+replicaCount: 1
+
+image:
+    repository: patrickjmcd/gonic
+    tag: latest
+    pullPolicy: IfNotPresent
+
+listenPort: 4747
+musicPath: "/music"
+scanInterval: 1440
+dbPath: "/data/gonic.db"
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+        - gonic.patrickjmcd.org
+    tls:
+        - secretName: gonic-patrickjmcd-org
+          hosts:
+              - gonic.patrickjmcd.org
+
+volumes:
+    - name: data
+      persistentVolumeClaim:
+          claimName: nfs-data-gonic-claim
+    - name: music
+      persistentVolumeClaim:
+          claimName: nfs-music-claim
+
+volumeMounts:
+    - name: data
+      mountPath: "/data"
+    - name: music
+      mountPath: "/music"
+
+resources:
+    requests:
+        memory: 256Mi
+        cpu: 0.1
+    limits:
+        memory: 2048Mi
+        cpu: 2
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

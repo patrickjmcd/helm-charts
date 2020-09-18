@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "gonic.fullname" . }}
+  labels:
+    app: {{ template "gonic.name" . }}
+    chart: {{ template "gonic.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.listenPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "gonic.name" . }}
+    release: {{ .Release.Name }}

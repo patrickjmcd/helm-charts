@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "gonic.fullname" . }}
+  labels:
+    app: {{ template "gonic.name" . }}
+    chart: {{ template "gonic.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "gonic.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "gonic.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+    spec:
+      volumes:
+{{ toYaml .Values.volumes | indent 6 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: GONIC_LISTEN_ADDR
+              value: "0.0.0.0:{{ .Values.listenPort }}"
+            - name: GONIC_MUSIC_PATH
+              value: "{{ .Values.musicPath }}"
+            - name: GONIC_SCAN_INTERVAL
+              value: "{{ .Values.scanInterval }}"
+            - name: GONIC_DB_PATH
+              value: "{{ .Values.dbPath }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.listenPort }}
+              protocol: TCP
+          volumeMounts:
+{{ toYaml .Values.volumeMounts | indent 12 }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
