@@ -29,7 +29,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: PUID
-              value: {{ .Values.PUID }}"
+              value: "{{ .Values.PUID }}"
             - name: PGID
               value: "{{ .Values.PGID }}"
             - name: airsonic_SCAN_INTERVAL
