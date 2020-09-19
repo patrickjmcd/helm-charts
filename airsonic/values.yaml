@@ -1,0 +1,54 @@
+replicaCount: 1
+
+image:
+    repository: linuxserver/airsonic
+    tag: latest
+    pullPolicy: IfNotPresent
+
+service:
+    type: LoadBalancer
+    port: 4040
+
+PUID: 1000
+PGID: 1000
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+        - airsonic.patrickjmcd.org
+    tls:
+        - secretName: airsonic-patrickjmcd-org
+          hosts:
+              - airsonic.patrickjmcd.org
+
+volumes:
+    - name: config
+      persistentVolumeClaim:
+          claimName: nfs-data-airsonic-claim
+    - name: music
+      persistentVolumeClaim:
+          claimName: nfs-music-claim
+
+volumeMounts:
+    - name: config
+      mountPath: "/config"
+    - name: music
+      mountPath: "/music"
+
+resources:
+    requests:
+        memory: 256Mi
+        cpu: 0.1
+    limits:
+        memory: 2048Mi
+        cpu: 2
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
