@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "strapi.fullname" . }}
+  labels:
+    app: {{ template "strapi.name" . }}
+    chart: {{ template "strapi.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "strapi.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "strapi.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+    spec:
+      volumes:
+{{ toYaml .Values.volumes | indent 6 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: COMPOSE_HTTP_TIMEOUT
+              value: "{{ .Values.env.compose_http_timeout | default 300 }}"
+            - name: DATABASE_CLIENT
+              value: "{{ .Values.env.database_client }}"
+            - name: DATABASE_PORT
+              value: "{{ .Values.env.database_port }}"
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database_secret_name}}"
+                  key: database_name
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database_secret_name}}"
+                  key: database_host
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database_secret_name}}"
+                  key: database_username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database_secret_name}}"
+                  key: database_password
+          ports:
+            - name: http
+              containerPort: 1337
+              protocol: TCP
+          volumeMounts:
+{{ toYaml .Values.volumeMounts | indent 12 }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

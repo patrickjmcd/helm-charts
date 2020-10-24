@@ -1,0 +1,58 @@
+replicaCount: 1
+
+image:
+    repository: strapi/strapi
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env:
+    database_client: postgres
+    database_port: 5432
+    compose_http_timeout: 300
+
+# you must create a secret in the same namespace with the following keys:
+#    - database_host
+#    - database_username
+#    - database_password
+#    - database_name
+database_secret_name: strapi-secret
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+        - strapi.patrickjmcd.org
+    tls:
+        - secretName: strapi-patrickjmcd-org
+          hosts:
+              - strapi.patrickjmcd.org
+
+volumes:
+    - name: strapi-volume
+      persistentVolumeClaim:
+          claimName: strapi-claim
+
+volumeMounts:
+    - name: strapi-volume
+      mountPath: "/srv/app"
+
+resources:
+    requests:
+        memory: 128Mi
+        cpu: 0.1
+    limits:
+        memory: 256Mi
+        cpu: 0.5
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
