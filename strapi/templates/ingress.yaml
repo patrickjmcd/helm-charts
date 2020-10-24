@@ -30,7 +30,7 @@ spec:
     - host: {{ . }}
       http:
         paths:
-          - path: /
+          - path: / # does this need to be static?
             backend:
               service:
                 name: {{ $fullName }}
