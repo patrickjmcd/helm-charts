@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "particlewebhook.fullname" . }}
+  labels:
+    app: {{ template "particlewebhook.name" . }}
+    chart: {{ template "particlewebhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "particlewebhook.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "particlewebhook.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+    spec:
+      {{ if .Values.image.imagePullSecretName }}
+      imagePullSecrets:
+        - name: "{{ .Values.image.imagePullSecretName }}"
+      {{ end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          env:
+            - name: INFLUXDB_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.influxDbSecretName }}
+                  key: influxdb-server
+            - name: INFLUXDB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.influxDbSecretName }}
+                  key: influxdb-user
+            - name: INFLUXDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.influxDbSecretName }}
+                  key: influxdb-password
+            - name: INFLUXDB_SSL
+              value: "true"
+            - name: INFLUXDB_VERIFYSSL
+              value: "true"
+            - name: INFLUXDB_PORT
+              value: "443"
+
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

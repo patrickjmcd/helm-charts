@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "particlewebhook.fullname" . }}
+  labels:
+    app: {{ template "particlewebhook.name" . }}
+    chart: {{ template "particlewebhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "particlewebhook.name" . }}
+    release: {{ .Release.Name }}
