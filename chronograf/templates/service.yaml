@@ -12,5 +12,7 @@ spec:
   ports:
   - port: 80
     targetPort: 8888
+    protocol: TCP
+    name: api
   selector:
     app: {{ template "chronograf.fullname" . }}
