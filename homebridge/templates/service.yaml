@@ -35,7 +35,7 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.config_ui_port }}
       protocol: TCP
-      name: {{ template "homebridge.fullname" . }}-ui
+      name: homebridge-ui
   selector:
     app: {{ template "homebridge.name" . }}
     release: {{ .Release.Name }}

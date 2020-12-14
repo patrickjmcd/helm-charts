@@ -33,6 +33,6 @@ spec:
           - path: {{ $ingressPath }}
             backend:
               serviceName: {{ template "homebridge.fullname" . }}-ui
-              servicePort: {{ template "homebridge.fullname" . }}-ui
+              servicePort: homebridge-ui
   {{- end }}
 {{- end }}
