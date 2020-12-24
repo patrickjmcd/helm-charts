@@ -1,0 +1,10 @@
+apiVersion: v2
+appVersion: v1.8.0
+dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.0.4
+description: Commento
+home: https://github.com/patrickjmcd/helm-charts/tree/master/charts/commento
+name: commento
+version: 1.0.0

@@ -3,7 +3,7 @@ entries:
   airsonic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.338981-06:00"
+    created: "2020-12-23T20:25:44.401011-06:00"
     description: airsonic - subsonic server API implementation
     digest: 0989f5512e78d5453f01bd65f0355c44cb561a59ee3a4962c61724f8e8155b7c
     icon: https://patrickjmcd.github.io/helm-charts/airsonic/logo/airsonic.png
@@ -13,7 +13,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.336162-06:00"
+    created: "2020-12-23T20:25:44.39957-06:00"
     description: airsonic - subsonic server API implementation
     digest: b056615c856fc08e95a0f6abe9a09ca495248cc767b635fc3bdd872bb6537cf6
     icon: https://patrickjmcd.github.io/helm-charts/airsonic/logo/airsonic.png
@@ -24,7 +24,7 @@ entries:
   beets:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.340188-06:00"
+    created: "2020-12-23T20:25:44.402281-06:00"
     description: Beets - the media library management system for obsessive music geeks
     digest: 7ab8bb6a79b8c157086c309df4da99f79f1e736daf7c64a4c2ad31b5c79ae01c
     icon: https://patrickjmcd.github.io/helm-charts/beets/logo/beets.png
@@ -35,7 +35,7 @@ entries:
   chronograf:
   - apiVersion: v1
     appVersion: 1.8.8
-    created: "2020-12-20T09:44:29.343348-06:00"
+    created: "2020-12-23T20:25:44.405085-06:00"
     description: Open-source web application written in Go and React.js that provides
       the tools to visualize your monitoring data and easily create alerting and automation
       rules. (NOW INCLUDING A PVC)
@@ -58,7 +58,7 @@ entries:
     version: 1.1.21
   - apiVersion: v1
     appVersion: 1.8.8
-    created: "2020-12-20T09:44:29.34169-06:00"
+    created: "2020-12-23T20:25:44.403597-06:00"
     description: Open-source web application written in Go and React.js that provides
       the tools to visualize your monitoring data and easily create alerting and automation
       rules. (NOW INCLUDING A PVC)
@@ -79,10 +79,25 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/chronograf-1.1.19.tgz
     version: 1.1.19
+  commento:
+  - apiVersion: v2
+    appVersion: v1.8.0
+    created: "2020-12-23T20:25:44.407184-06:00"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.0.4
+    description: Commento
+    digest: cf0514963a0cee3045ac685d408d3002c375b3a6dc42c5d40ea1c48cf5ed54ad
+    home: https://github.com/patrickjmcd/helm-charts/tree/master/charts/commento
+    name: commento
+    urls:
+    - https://patrickjmcd.github.io/helm-charts/commento-1.0.0.tgz
+    version: 1.0.0
   ghost:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.346721-06:00"
+    created: "2020-12-23T20:25:44.409753-06:00"
     description: Free and Open-Source Blogging Platform.
     digest: cbfff69a1196ad46937b1796a25badbc996b242f939e713e17d45d57be02cf69
     icon: https://patrickjmcd.github.io/helm-charts/ghost/logo/ghost.png
@@ -93,7 +108,7 @@ entries:
   gonic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.352651-06:00"
+    created: "2020-12-23T20:25:44.419976-06:00"
     description: gonic - subsonic server API implementation
     digest: 41b1a2723d5f2ff49e8628df9332c5602db7a86c4561abc0dbd6bb9981a881f3
     icon: https://patrickjmcd.github.io/helm-charts/gonic/logo/gonic.png
@@ -104,7 +119,7 @@ entries:
   homebridge:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.376352-06:00"
+    created: "2020-12-23T20:25:44.458031-06:00"
     description: Homebridge
     digest: d69d2819cd133e2fab0002864d1638ee60e9fd584ed67b6cfe9d1a6bca8d8c11
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -114,7 +129,7 @@ entries:
     version: 0.2.6
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.372513-06:00"
+    created: "2020-12-23T20:25:44.452592-06:00"
     description: Homebridge
     digest: dc2e0657f6b9fc7d8e57e394b6e148eb23e090dbc98237b1bca3c0b72c51e83a
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -124,7 +139,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.36801-06:00"
+    created: "2020-12-23T20:25:44.448349-06:00"
     description: Homebridge
     digest: f78c0b0acc69bde0def1bfa7cf9d3266688ca0bf07ea25187b0a881bff2e455f
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -134,7 +149,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.363271-06:00"
+    created: "2020-12-23T20:25:44.444491-06:00"
     description: Homebridge
     digest: 1ec4f5eaa7f03a16a8fb9439f84ff066e69a753efe86554f40b171c92e9a0de0
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -144,7 +159,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.358831-06:00"
+    created: "2020-12-23T20:25:44.440034-06:00"
     description: Homebridge
     digest: 93f200ef23a3509c9a89b46b0dea22fb6371522bd00ffe4feb39092ecc54f05e
     icon: https://patrickjmcd.github.io/helm-charts/homebridge/logo/homebridge.png
@@ -152,32 +167,10 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/homebridge-0.2.2.tgz
     version: 0.2.2
-  jellyfin:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.37881-06:00"
-    description: jellyfin - The Free Software Media System
-    digest: e42deefebe46a7b3dbbaf95fd6c8343fb0443391bb290403f5129e647d2dba7f
-    icon: https://patrickjmcd.github.io/helm-charts/jellyfin/logo/jellyfin.jpeg
-    name: jellyfin
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/jellyfin-0.2.2.tgz
-    version: 0.2.2
-  lidarr:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.380772-06:00"
-    description: Looks and smells like Sonarr but made for music.
-    digest: 8b079e1efa22ac37ace68e9c0a4b83e30d654659e15401ef3eef6fdbf42980b2
-    icon: https://patrickjmcd.github.io/helm-charts/lidarr/logo/lidarr.png
-    name: lidarr
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/lidarr-0.2.2.tgz
-    version: 0.2.2
   nginx:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.381929-06:00"
+    created: "2020-12-23T20:25:44.459371-06:00"
     description: Deliver Modern applications at Scale
     digest: eb738ed6ef972e8688b83533b3127e4727969d1b13c81347faa5148018b59480
     icon: https://patrickjmcd.github.io/helm-charts/nginx/logo/nginx.svg
@@ -185,136 +178,20 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/nginx-0.2.3.tgz
     version: 0.2.3
-  nzbget:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.383493-06:00"
-    description: Efficient Usenet Downloader
-    digest: ef6eaa23b505ab9b0cac204ccd0a5ad0ecd4228697c56f340b6818cbe7ac1d6a
-    icon: https://patrickjmcd.github.io/helm-charts/nzbget/logo/nzbget.png
-    name: nzbget
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/nzbget-0.2.3.tgz
-    version: 0.2.3
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.382764-06:00"
-    description: Efficient Usenet Downloader
-    digest: fae4bf046ef2b2da3c8d422e195a70aca0a4ceb02b511001068805f14d9094e0
-    icon: https://patrickjmcd.github.io/helm-charts/nzbget/logo/nzbget.png
-    name: nzbget
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/nzbget-0.2.2.tgz
-    version: 0.2.2
-  nzbhydra:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.385822-06:00"
-    description: Usenet meta search
-    digest: 2496bde83c091a408ceb915d05065dfe364e9961fbd5a8239f1aa892de6f3f63
-    icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
-    name: nzbhydra
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/nzbhydra-0.2.4.tgz
-    version: 0.2.4
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.385021-06:00"
-    description: Usenet meta search
-    digest: 3d536821254d9c9d0b98f3a8e3c036960eb754e0b49bdbf5e07c30c475fad273
-    icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
-    name: nzbhydra
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/nzbhydra-0.2.3.tgz
-    version: 0.2.3
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.38429-06:00"
-    description: Usenet meta search
-    digest: c48c578d1f2c3f2d6c70683a355665070b4d0eed2518e0559ae39a34f53e560f
-    icon: https://patrickjmcd.github.io/helm-charts/nzbhydra/logo/nzbhydra.png
-    name: nzbhydra
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/nzbhydra-0.2.2.tgz
-    version: 0.2.2
-  ombi:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.38665-06:00"
-    description: Ombi - Automatic downloader for movies :)
-    digest: cbb4ded4fbe63201476f2f013a174e200c6cb84edf6f8e5b5996f2a6a03eaa21
-    icon: https://patrickjmcd.github.io/helm-charts/ombi/logo/ombi.png
-    name: ombi
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/ombi-0.2.2.tgz
-    version: 0.2.2
   particlewebhook:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.387433-06:00"
+    created: "2020-12-23T20:25:44.460827-06:00"
     description: Webhook listener for InfluxDB from Particle
     digest: 064c06089292393af70f30f2b0dffcf06d959b68ade1c719e1243704f3756137
     name: particlewebhook
     urls:
     - https://patrickjmcd.github.io/helm-charts/particlewebhook-0.2.3.tgz
     version: 0.2.3
-  plex:
-  - apiVersion: v1
-    appVersion: 1.16.0.1226-7eb2c8f6f
-    created: "2020-12-20T09:44:29.388747-06:00"
-    description: Plex Media Server
-    digest: c8248453f09fbaaaea7f17b98be8780e26fe4b3ebc9bd5a0e7a419f83266a05f
-    home: https://plex.tv/
-    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
-    keywords:
-    - plex
-    maintainers:
-    - name: patrickjmcd
-    - name: munnerz
-    name: plex
-    sources:
-    - https://github.com/munnerz/kube-plex
-    - https://hub.docker.com/r/plexinc/pms-docker/
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/plex-0.2.2.tgz
-    version: 0.2.2
-  radarr:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.391235-06:00"
-    description: Radarr - Automatic downloader for movies :)
-    digest: 0fc7c6fc9307ba4e65add79be5ca78fcd163a499509257db181c9eca25c2b8f3
-    icon: https://patrickjmcd.github.io/helm-charts/radarr/logo/radarr.png
-    name: radarr
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/radarr-0.2.2.tgz
-    version: 0.2.2
-  sabnzbd:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.392152-06:00"
-    description: Efficient Usenet Downloader
-    digest: 990acfc38fc5727fca7bbe0740adf6018517b9ed56007e07afc3f6a6abc3382b
-    icon: https://patrickjmcd.github.io/helm-charts/sabnzbd/logo/sabnzbd.svg
-    name: sabnzbd
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/sabnzbd-0.2.2.tgz
-    version: 0.2.2
-  sonarr:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-12-20T09:44:29.394039-06:00"
-    description: Sonarr - Automatic downloader for TV shows ^^
-    digest: 9d15ad52215a2b9c2a9904daf5199321e261d556fe7dd95da3e7b92431202587
-    icon: https://patrickjmcd.github.io/helm-charts/sonarr/logo/sonarr.png
-    name: sonarr
-    urls:
-    - https://patrickjmcd.github.io/helm-charts/sonarr-0.2.2.tgz
-    version: 0.2.2
   strapi:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.397144-06:00"
+    created: "2020-12-23T20:25:44.464387-06:00"
     description: Design APIs fast, manage content easily
     digest: 4b9000926ceeb79cf65da37f27778eb33eb8e43d4c5b8b66c42f189a60a2c578
     icon: https://patrickjmcd.github.io/helm-charts/strapi/logo/strapi.png
@@ -324,7 +201,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-20T09:44:29.395492-06:00"
+    created: "2020-12-23T20:25:44.462575-06:00"
     description: Design APIs fast, manage content easily
     digest: 14532ee28f98c82b74657d86e4bf36a1a59753c95413e83cfc7b70698f831030
     icon: https://patrickjmcd.github.io/helm-charts/strapi/logo/strapi.png
@@ -332,4 +209,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/strapi-0.2.2.tgz
     version: 0.2.2
-generated: "2020-12-20T09:44:29.333997-06:00"
+generated: "2020-12-23T20:25:44.396916-06:00"

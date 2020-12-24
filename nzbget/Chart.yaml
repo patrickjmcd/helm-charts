@@ -1,6 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: Efficient Usenet Downloader
-name: nzbget
-version: 0.2.3
-icon: https://patrickjmcd.github.io/helm-charts/nzbget/logo/nzbget.png
