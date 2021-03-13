@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "babybuddy.fullname" . }}
+  labels:
+    app: {{ template "babybuddy.name" . }}
+    chart: {{ template "babybuddy.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "babybuddy.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "babybuddy.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+    spec:
+      volumes:
+{{ toYaml .Values.volumes | indent 6 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["bash","-c", 'sleep 5 && python manage.py migrate --noinput && python manage.py createcachetable && gunicorn babybuddy.wsgi -b :8000 --log-level=info']
+          env:
+{{ toYaml .Values.env | indent 12 }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresSecretName }}
+                  key: postgres-db-host
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresSecretName }}
+                  key: postgres-db-name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresSecretName }}
+                  key: postgres-db-user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresSecretName }}
+                  key: postgres-db-password
+            - name: DJANGO_SETTINGS_MODULE
+              value: babybuddy.settings.docker
+            - name: SECRET_KEY
+              value: {{ .Values.secretKey }}
+            - name: TIME_ZONE
+              value: {{ .Values.timeZone }}
+          volumeMounts:
+{{ toYaml .Values.volumeMounts | indent 12 }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    

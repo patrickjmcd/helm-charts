@@ -1,0 +1,56 @@
+replicaCount: 1
+
+image:
+    repository: babybuddy/babybuddy
+    tag: latest
+    pullPolicy: IfNotPresent
+
+service:
+    type: ClusterIP
+    port: 80
+
+postgresSecretName: babybuddyPostgres
+# postgresSecretName should specify a secret with values for keys
+# - postgres-db-host
+# - postgres-db-name
+# - postgres-db-user
+# - postgres-db-password
+secretKey: this-is-a-secret
+timeZone: America/Chicago
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+        - babybuddy.patrickjmcd.org
+    tls:
+        - secretName: babybuddy-patrickjmcd-org
+          hosts:
+              - babybuddy.patrickjmcd.org
+
+volumes:
+    - name: myvolume
+      persistentVolumeClaim:
+          claimName: myvolumeClaim
+
+volumeMounts:
+    - name: myvolume
+      mountPath: "/media"
+      subPath: "config/babybuddy"
+
+resources:
+    requests:
+        memory: 128Mi
+        cpu: 0.1
+    limits:
+        memory: 256Mi
+        cpu: 0.5
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
