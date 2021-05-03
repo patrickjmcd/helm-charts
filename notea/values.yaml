@@ -1,0 +1,45 @@
+replicaCount: 1
+
+image:
+    repository: cinwell/notea
+    tag: latest
+    pullPolicy: IfNotPresent
+
+# store_secret_name should specify a secret with properties:
+# store-access-key
+# store-secret-key
+# store-bucket
+# store-region
+# password
+store_secret_name: notea-secret
+
+service:
+    type: ClusterIP
+    port: 3000
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+        - notea.patrickjmcd.org
+    tls:
+        - secretName: notea-patrickjmcd-org
+          hosts:
+              - notea.patrickjmcd.org
+
+resources:
+    requests:
+        memory: 128Mi
+        cpu: 0.1
+    limits:
+        memory: 256Mi
+        cpu: 0.5
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "notea.fullname" . }}
+  labels:
+    app: {{ template "notea.name" . }}
+    chart: {{ template "notea.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "notea.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "notea.name" . }}
+        release: {{ .Release.Name }}
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: STORE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.store_secret_name }}
+                  key: store-access-key
+            - name: STORE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.store_secret_name }}
+                  key: store-secret-key
+            - name: STORE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.store_secret_name }}
+                  key: store-bucket
+            - name: STORE_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.store_secret_name }}
+                  key: store-region
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.store_secret_name }}
+                  key: password
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    
