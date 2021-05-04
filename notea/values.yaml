@@ -9,7 +9,7 @@ image:
 # store-access-key
 # store-secret-key
 # store-bucket
-# store-region
+# store-end-point
 # password
 store_secret_name: notea-secret
 
