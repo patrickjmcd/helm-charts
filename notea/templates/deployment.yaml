@@ -41,16 +41,18 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.store_secret_name }}
                   key: store-bucket
-            - name: STORE_REGION
+            - name: STORE_END_POINT
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.store_secret_name }}
-                  key: store-region
+                  key: store-end-point
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.store_secret_name }}
                   key: password
+            - name: STORE_FORCE_PATH_STYLE
+              value: "true"
           ports:
             - name: http
               containerPort: 3000
