@@ -53,6 +53,8 @@ spec:
                   key: password
             - name: STORE_FORCE_PATH_STYLE
               value: "true"
+            - name: DISABLE_PASSWORD
+              value: {{ default "false" .Values.disable_password }}
           ports:
             - name: http
               containerPort: 3000

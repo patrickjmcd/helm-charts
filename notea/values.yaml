@@ -16,6 +16,8 @@ store_secret_name: notea-secret
 service:
     type: ClusterIP
     port: 3000
+    
+disable_password: "false"
 
 ingress:
     enabled: false
