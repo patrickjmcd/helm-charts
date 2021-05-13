@@ -25,7 +25,9 @@ entries:
   - apiVersion: v1
     appVersion: 1.5.1
     created: "2021-05-03T21:16:43.299897-05:00"
-    description: A buddy for babies! Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work.
+    description: A buddy for babies! Helps caregivers track sleep, feedings, diaper
+      changes, tummy time and more to learn about and predict baby's needs without
+      (as much) guess work.
     digest: 547a8630aa5d318717ea7f930ac52e2908855f095fff01d588973b68f387bad2
     icon: https://patrickjmcd.github.io/helm-charts/babybuddy/logo/icon.png
     name: babybuddy
@@ -47,7 +49,9 @@ entries:
   - apiVersion: v1
     appVersion: 1.8.8
     created: "2021-05-03T21:16:43.300964-05:00"
-    description: Open-source web application written in Go and React.js that provides the tools to visualize your monitoring data and easily create alerting and automation rules. (NOW INCLUDING A PVC)
+    description: Open-source web application written in Go and React.js that provides
+      the tools to visualize your monitoring data and easily create alerting and automation
+      rules. (NOW INCLUDING A PVC)
     digest: 11adbdb4436b99026ab54b3b78c4bde7e749a80887e3f99d6943025981e935f1
     home: https://www.influxdata.com/time-series-platform/chronograf/
     keywords:
@@ -68,7 +72,9 @@ entries:
   - apiVersion: v1
     appVersion: 1.8.8
     created: "2021-05-03T21:16:43.300568-05:00"
-    description: Open-source web application written in Go and React.js that provides the tools to visualize your monitoring data and easily create alerting and automation rules. (NOW INCLUDING A PVC)
+    description: Open-source web application written in Go and React.js that provides
+      the tools to visualize your monitoring data and easily create alerting and automation
+      rules. (NOW INCLUDING A PVC)
     digest: d82286a857ac19b6f062457315fb51a14f6b2eeff8743f07c7a6fe5288604fde
     home: https://www.influxdata.com/time-series-platform/chronograf/
     keywords:
@@ -148,6 +154,16 @@ entries:
   notea:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2021-05-13T13:45:39.844718769Z"
+    description: Self hosted note taking app stored on S3
+    digest: 3af3e34c79ce559db8f429efeae294ab55bc5a8511bf8715e26c5174093a54dc
+    icon: https://patrickjmcd.github.io/helm-charts/notea/logo/logo.svg
+    name: notea
+    urls:
+    - https://github.com/patrickjmcd/helm-charts/releases/download/notea-0.3.3/notea-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2021-05-03T21:16:43.306855-05:00"
     description: Self hosted note taking app stored on S3
     digest: 4080390c560ebf3d63b2b1838225bcfadb032282f354edb4069cb52ae24b04a9
@@ -197,4 +213,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/strapi-0.2.2.tgz
     version: 0.2.2
-generated: "2021-05-03T21:16:43.298825-05:00"
+generated: "2021-05-13T13:45:40.02892596Z"
