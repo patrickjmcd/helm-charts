@@ -30,9 +30,9 @@ spec:
         - name: BACKEND__BASIC_STATION__REGION
           value: {{ .Values.gatewaybridge.regionSettings.region }}
         - name: BACKEND__BASIC_STATION__FREQUENCY_MIN
-          value: {{ .Values.gatewaybridge.regionSettings.frequencyMin }}
+          value: {{ .Values.gatewaybridge.regionSettings.frequencyMin | quote }}
         - name: BACKEND__BASIC_STATION__FREQUENCY_MAX
-          value: {{ .Values.gatewaybridge.regionSettings.frequencyMax }}
+          value: {{ .Values.gatewaybridge.regionSettings.frequencyMax | quote}}
 {{ end }}
         - name: INTEGRATION__MQTT__AUTH__GENERIC__SERVER
           value: {{ .Values.gatewaybridge.integrations.mqtt.server }}
