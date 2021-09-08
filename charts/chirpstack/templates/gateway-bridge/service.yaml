@@ -1,4 +1,6 @@
 {{- if .Values.gatewaybridge.enabled -}}
+{{- if eq .Values.gatewaybridge.backendType "semtech_udp" -}}
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,9 +8,9 @@ metadata:
   labels:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.gatewaybridge.service.semtech.type | quote}}
-  {{- if .Values.gatewaybridge.service.semtech.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.gatewaybridge.service.semtech.loadBalancerIP | quote }}
+  type: {{ .Values.gatewaybridge.service.type | quote}}
+  {{- if .Values.gatewaybridge.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.gatewaybridge.service.loadBalancerIP | quote }}
   {{- end }}
   ports:
   - name: "semtech"
@@ -17,7 +19,9 @@ spec:
     targetPort: 1700
   selector:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
+{{- end -}}
 
+{{ if eq .Values.gatewaybridge.backendType "basicstation" }}
 ---
 apiVersion: v1
 kind: Service
@@ -26,15 +30,16 @@ metadata:
   labels:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.gatewaybridge.service.basicstation.type | quote}}
-  {{- if .Values.gatewaybridge.service.basicstation.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.gatewaybridge.service.basicstation.loadBalancerIP | quote }}
+  type: {{ .Values.gatewaybridge.service.type | quote}}
+  {{- if .Values.gatewaybridge.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.gatewaybridge.service.loadBalancerIP | quote }}
   {{- end }}
   ports:
   - name: "basicstation"
-    port: 3100
+    port: 3001
     protocol: TCP
-    targetPort: 3100
+    targetPort: 3001
   selector:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
+{{- end -}}
 {{- end -}}

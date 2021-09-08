@@ -140,13 +140,17 @@ gatewaybridge:
     repository: chirpstack/chirpstack-gateway-bridge
     tag: 3.9.2
     pullPolicy: IfNotPresent
+
+  backendType: basicstation
+  regionSettings: # basicstation only
+    region: US915
+    frequencyMax: 902000000
+    frequencyMin: 928000000
+    
   integrations:
     mqtt:
       enabled: true
       server: "tcp://mosquitto:1883"
       existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
   service:
-    semtech:
-      type: ClusterIP
-    basicstation:
-      type: ClusterIP
+    type: ClusterIP

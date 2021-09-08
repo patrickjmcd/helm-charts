@@ -24,6 +24,16 @@ spec:
       - image: {{ printf "%s:%s" .Values.gatewaybridge.image.repository .Values.gatewaybridge.image.tag }}
         name: {{ template "chirpstack.gatewaybridge.fullname" . }}
         env:
+        - name: BACKEND__TYPE
+          value: {{ .Values.gatewaybridge.backendType }}
+{{ if eq .Values.gatewaybridge.backendType "basicstation" }}
+        - name: BACKEND__BASIC_STATION__REGION
+          value: {{ .Values.gatewaybridge.regionSettings.region }}
+        - name: BACKEND__BASIC_STATION__FREQUENCY_MIN
+          value: {{ .Values.gatewaybridge.regionSettings.frequencyMin }}
+        - name: BACKEND__BASIC_STATION__FREQUENCY_MAX
+          value: {{ .Values.gatewaybridge.regionSettings.frequencyMax }}
+{{ end }}
         - name: INTEGRATION__MQTT__AUTH__GENERIC__SERVER
           value: {{ .Values.gatewaybridge.integrations.mqtt.server }}
         - name: INTEGRATION__MQTT__AUTH__GENERIC__USERNAME
@@ -40,8 +50,14 @@ spec:
               optional: true
 
         ports:
+{{ if eq .Values.gatewaybridge.backendType "semtech_udp"}}
         - containerPort: 1700
           protocol: UDP
+{{ end }}
+{{ if eq .Values.gatewaybridge.backendType "basicstation"}}
+        - containerPort: 3001
+          protocol: TCP
+{{ end }}
         resources: {}
         volumeMounts: []
       restartPolicy: Always
