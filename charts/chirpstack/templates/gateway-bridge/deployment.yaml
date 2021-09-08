@@ -59,7 +59,13 @@ spec:
           protocol: TCP
 {{ end }}
         resources: {}
-        volumeMounts: []
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge.toml
+            subPath: chirpstack-gateway-bridge.toml
       restartPolicy: Always
-      volumes: []
+      volumes:
+      - name: config-volume
+        configMap: 
+          name: {{ template "chirpstack.gatewaybridge.fullname" . }}
 {{- end -}}
