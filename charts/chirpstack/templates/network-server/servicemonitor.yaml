@@ -1,0 +1,26 @@
+{{- if .Values.networkserver.prometheus.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "chirpstack.networkserver.fullname" . }}
+{{- if .Values.networkserver.prometheus.namespace }}
+  namespace: {{.Values.networkserver.prometheus.namespace }}
+{{- else }}
+  namespace: {{ .Release.Namespace | quote }}
+{{- end }}
+  labels:
+{{ include "chirpstack.networkserver.labels" . | indent 4 }}
+spec:
+  jobLabel: {{ template "chirpstack.networkserver.fullname" . }}
+  selector:
+    matchLabels:
+{{ include "chirpstack.networkserver.labels" . | indent 6 }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  endpoints:
+  - port: monitoring
+    path: /metrics
+    interval: {{ .Values.networkserver.prometheus.interval | quote }}
+    scrapeTimeout: 5s
+{{- end }}

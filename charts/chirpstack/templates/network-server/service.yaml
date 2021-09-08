@@ -1,0 +1,24 @@
+{{- if .Values.networkserver.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "chirpstack.networkserver.fullname" . }}-api
+  labels:
+{{ include "chirpstack.networkserver.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.networkserver.service.type | quote }}
+  {{- if .Values.networkserver.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.networkserver.service.loadBalancerIP | quote }}
+  {{- end }}
+  ports:
+  - name: "api-net"
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  - name: "monitoring"
+    port: 8090
+    protocol: TCP
+    targetPort: 8090
+  selector:
+{{ include "chirpstack.networkserver.selector" . | indent 4 }}
+{{- end -}}

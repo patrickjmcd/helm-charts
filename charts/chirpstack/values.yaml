@@ -1,0 +1,144 @@
+common:
+  dns: "cluster.local"
+appserver:
+  enabled: true
+  name: as
+  replicas: 1
+  image:
+    repository: chirpstack/chirpstack-application-server
+    tag: 3.14.0
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+  postgres:
+    existingSecret: "CHANGE_ME" # secret must contain keys username and password
+    dbname: chirpas
+    host: chirpstack-postgres
+    port: 5432
+    sslmode: require
+  redis:
+    existingSecret: ""
+    existingSecretPasswordKey: redis-password
+    cluster: false
+    servers:
+      - redis-chirpstack-redis:6379
+    master: ""
+  integration:
+    mqtt:
+      enabled: true
+      server: "tcp://mqtt-mosquitto:1883"
+      existingSecret: "" # secret and keys are optional
+    kafka:
+      enabled: false
+      topic: chirpstack_as
+      tls: false
+      mechanism: plain # plain or scram
+      algorithm: SHA-512 # only used if mechanism: scram
+      brokers:
+        - chirpstack-kafka-bootstrap:9092
+      username: ""
+      existingSecret: ""
+      existingSecretPasswordKey: password
+  api:
+    public_host: "" # leave empty for internal, external grpc not yet supported
+    external: # REST-API
+      existingSecret: "chirpstack-jwt-secret" # secret is required key(signSecret)
+  istio:
+    enabled: false
+    gateway:
+      selector: "" # ingressgateway
+      host: "localhost"
+      tls:
+        enabled: true
+        credentialName: "CHANGE_ME"
+      cors:
+        enabled: true # https://$HOST if tls enabled
+        additionalOrigins: []
+  prometheus:
+    enabled: false
+    namespace: monitoring
+    interval: "60s"
+
+
+networkserver:
+  enabled: true
+  replicas: 1
+  name: ns
+  image:
+    repository: chirpstack/chirpstack-network-server
+    tag: 3.12.3
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+  postgres:
+    existingSecret: "CHANGE_ME" # secret must set and contain keys username and password
+    dbname: chirpns
+    host: chirpstack-postgres
+    port: 5432
+    sslmode: require
+  redis:
+    existingSecret: ""
+    existingSecretPasswordKey: redis-password
+    cluster: false
+    servers:
+      - redis-chirpstack-redis:6379
+    master: ""
+  network:
+    id: "000000" # Network identifier https://lora-alliance.org/sites/default/files/2018-11/20181114_NetID_FAQ.pdf
+    band:
+      name: "EU868"
+    settings:
+      uplink_channels: [] # when left blank, all channels will be enabled.
+      extra_channels: # https://lora-alliance.org/sites/default/files/2018-04/lorawantm_regional_parameters_v1.1rb_-_final.pdf
+        enabled: false
+        channels: |
+          [[network_server.network_settings.extra_channels]]
+          frequency=867100000
+          min_dr=0
+          max_dr=5
+
+          [[network_server.network_settings.extra_channels]]
+          frequency=867300000
+          min_dr=0
+          max_dr=5
+
+          [[network_server.network_settings.extra_channels]]
+          frequency=867500000
+          min_dr=0
+          max_dr=5
+
+          [[network_server.network_settings.extra_channels]]
+          frequency=867700000
+          min_dr=0
+          max_dr=5
+
+          [[network_server.network_settings.extra_channels]]
+          frequency=867900000
+          min_dr=0
+          max_dr=5
+  gateway:
+    backend:
+      type: mqtt # only mqtt supported right now
+      mqtt:
+        server: "tcp://mqtt-mosquitto:1883"
+        existingSecret: "" # secret and keys are optional
+        event_topic: "gateway/+/event/+"
+  join:
+    default:
+      server: "" # defaults to app-server(enabled) if empty    
+  prometheus:
+    enabled: false
+    namespace: monitoring
+    interval: "60s"
+
+
+gatewaybridge:
+  enabled: false
+  name: gb
+  replicas: 1
+  image:
+    repository: chirpstack/chirpstack-gateway-bridge
+    tag: 3.9.2
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP

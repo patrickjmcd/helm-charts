@@ -1,0 +1,109 @@
+{{- if .Values.appserver.enabled -}}
+{{- if not .Values.appserver.postgres.existingSecret -}}
+{{- fail "appserver: You must provide a postgres secret" -}}
+{{- end -}}
+{{- if not .Values.appserver.api.external.existingSecret -}}
+{{- fail "appserver: You must provide a singSecret" -}}
+{{- end -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "chirpstack.appserver.fullname" . }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/app-server/configmap.yaml") . | sha256sum }}
+  labels:
+{{ include "chirpstack.appserver.labels" . | indent 4 }}
+
+spec:
+  replicas: {{ .Values.appserver.replicas }}
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+{{ include "chirpstack.appserver.selector" . | indent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/app-server/configmap.yaml") . | sha256sum }}
+      labels:
+{{ include "chirpstack.appserver.selector" . | indent 8 }}
+    spec:
+      containers:
+      - image: {{ printf "%s:%s" .Values.appserver.image.repository .Values.appserver.image.tag }}
+        name: {{ template "chirpstack.appserver.fullname" . }}
+        imagePullPolicy: {{ .Values.appserver.image.pullPolicy | quote }}
+        env:
+        - name: POSTGRESQL__HOST
+          value: 
+        - name: POSTGRESQL__USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.appserver.postgres.existingSecret }}
+              key: username
+        - name: POSTGRESQL__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.appserver.postgres.existingSecret }}
+              key: password
+        - name: POSTGRESQL__DSN
+          value: {{ template "chirpstack.appserver.postgres.dsn" .}}
+        - name: REDIS__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ default "secret.not.set" .Values.appserver.redis.existingSecret }} 
+              key: {{ default "password" .Values.appserver.redis.existingSecretPasswordKey }}  
+              optional: true          
+        - name: APPLICATION_SERVER__API__PUBLIC_HOST
+          value: {{ template "chirpstack.appserver.public.host" . }}
+        - name: APPLICATION_SERVER__EXTERNAL_API__JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.appserver.api.external.existingSecret }} 
+              key: signSecret
+{{ include "chirpstack.appserver.integration" . | indent 8 }}
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+          name: api-user
+        - containerPort: 8001
+          protocol: TCP
+          name: api-app
+        - containerPort: 8003
+          protocol: TCP
+          name: api-join
+        - containerPort: 8090
+          protocol: TCP
+          name: monitoring
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 5
+          periodSeconds: 60
+        startupProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 3
+          periodSeconds: 20
+        resources: {}
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/chirpstack-application-server/chirpstack-application-server.toml
+            subPath: chirpstack-application-server.toml
+      restartPolicy: Always
+      volumes:
+      - name: config-volume
+        configMap: 
+          name: {{ template "chirpstack.appserver.fullname" . }}
+{{- end -}}

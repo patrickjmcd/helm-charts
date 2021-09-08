@@ -1,0 +1,92 @@
+{{- if .Values.networkserver.enabled -}}
+{{- if not .Values.networkserver.postgres.existingSecret -}}
+{{- fail "networkserver: You must set a postgres secret" -}}
+{{- end -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "chirpstack.networkserver.fullname" . }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/network-server/configmap.yaml") . | sha256sum }}
+  labels:
+{{ include "chirpstack.networkserver.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.networkserver.replicas }}
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+{{ include "chirpstack.networkserver.selector" . | indent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/network-server/configmap.yaml") . | sha256sum }}
+      labels:
+{{ include "chirpstack.networkserver.selector" . | indent 8 }}
+    spec:
+      containers:
+      - image: {{ printf "%s:%s" .Values.networkserver.image.repository .Values.networkserver.image.tag }}
+        name: {{ template "chirpstack.networkserver.fullname" . }}
+        imagePullPolicy: {{ .Values.networkserver.image.pullPolicy | quote }}
+        env:
+        - name: POSTGRESQL__HOST
+          value: 
+        - name: POSTGRESQL__USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.networkserver.postgres.existingSecret }}
+              key: username
+        - name: POSTGRESQL__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.networkserver.postgres.existingSecret }}
+              key: password
+        - name: POSTGRESQL__DSN
+          value: {{ template "chirpstack.networkserver.postgres.dsn" . }}
+        - name: REDIS__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ default "secret.not.set" .Values.networkserver.redis.existingSecret }} 
+              key: {{ default "password" .Values.networkserver.redis.existingSecretPasswordKey }}  
+              optional: true        
+{{ include "chirpstack.networkserver.backend" . | indent 8 }}
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+          name: api-net
+        - containerPort: 8090
+          protocol: TCP
+          name: monitoring
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 5
+          periodSeconds: 60
+        startupProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: monitoring
+          failureThreshold: 3
+          periodSeconds: 20
+        resources: {}
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/chirpstack-network-server/chirpstack-network-server.toml
+            subPath: chirpstack-network-server.toml
+      restartPolicy: Always
+      volumes:
+      - name: config-volume
+        configMap: 
+          name: {{ template "chirpstack.networkserver.fullname" . }}
+{{- end -}}
