@@ -15,6 +15,10 @@ spec:
     port: 1700
     protocol: UDP
     targetPort: 1700
+  - name: "basicstation"
+    port: 3100
+    protocol: TCP
+    targetPort: 3100
   selector:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 {{- end -}}
