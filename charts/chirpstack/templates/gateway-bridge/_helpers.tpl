@@ -8,6 +8,7 @@ helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 {{- end -}}
 
 {{- define "chirpstack.gatewaybridge.backend" -}}
+{{- if .Values.gatewaybridge.integrations.mqtt.enabled -}}
 {{- $mqttSecret := .Values.gatewaybridge.integrations.mqtt.existingSecret | default "secret.not.set" | quote -}}
 - name: INTEGRATION__MQTT__AUTH__GENERIC__SERVER
   value: {{ .Values.gatewaybridge.integrations.mqtt.server }}
@@ -23,10 +24,13 @@ helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
       name: {{ $mqttSecret  }}
       key: password
       optional: true
-- name: INTEGRATION__MQTT__AUTH__GENERIC____CLIENT_ID
+- name: INTEGRATION__MQTT__AUTH__GENERIC__CLIENT_ID
   valueFrom:
     fieldRef:
       fieldPath: metadata.name
+{{- else -}}
+{{- fail "gatewaybridge: backend type not supported" -}}
+{{- end -}}
 {{- end -}}
 
 
