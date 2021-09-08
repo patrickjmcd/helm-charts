@@ -7,6 +7,32 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 {{- end -}}
 
+{{- define "chirpstack.gatewaybridge.backend" -}}
+{{- if .Values.gatewaybridge.integrations.mqtt.enabled -}}
+{{- $mqttSecret := .Values.gatewaybridge.integrations.mqtt.existingSecret | default "secret.not.set" | quote -}}
+- name: INTEGRATION__MQTT__AUTH__GENERIC__SERVER
+  value: {{ .Values.gatewaybridge.integrations.mqtt.server }}
+- name: INTEGRATION__MQTT__AUTH__GENERIC__USERNAME
+  valueFrom:
+    secretKeyRef:
+      name: {{ $mqttSecret }}
+      key: username
+      optional: true
+- name: INTEGRATION__MQTT__AUTH__GENERIC__PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: {{ $mqttSecret  }}
+      key: password
+      optional: true
+- name: INTEGRATION__MQTT__AUTH__GENERIC____CLIENT_ID
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.name
+{{- else -}}
+{{- fail "networkserver: backend type not supported" -}}
+{{- end -}}
+{{- end -}}
+
 
 {{- define "chirpstack.gatewaybridge.fullname" -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}

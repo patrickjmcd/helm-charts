@@ -23,6 +23,7 @@ spec:
       containers:
       - image: {{ printf "%s:%s" .Values.gatewaybridge.image.repository .Values.gatewaybridge.image.tag }}
         name: {{ template "chirpstack.gatewaybridge.fullname" . }}
+{{ include "chirpstack.gatewaybridge.backend" . | indent 8 }}
         ports:
         - containerPort: 1700
           protocol: UDP
