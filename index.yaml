@@ -45,6 +45,17 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/beets-0.2.2.tgz
     version: 0.2.2
+  chirpstack:
+  - apiVersion: v1
+    appVersion: 3.x
+    created: "2021-09-08T01:39:57.829464045Z"
+    description: Community Helm Chart for chirpstack.io network stack.
+    digest: 26adf9c09b33c990a19455d9b2601a32f12dd1b014fc3aa50afcbd714acf97e4
+    icon: https://www.chirpstack.io/static/logo.png
+    name: chirpstack
+    urls:
+    - https://github.com/patrickjmcd/helm-charts/releases/download/chirpstack-0.13.0/chirpstack-0.13.0.tgz
+    version: 0.13.0
   chronograf:
   - apiVersion: v1
     appVersion: 1.8.8
@@ -213,4 +224,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/strapi-0.2.2.tgz
     version: 0.2.2
-generated: "2021-05-13T13:45:40.02892596Z"
+generated: "2021-09-08T01:39:57.829505547Z"
