@@ -21,7 +21,7 @@ spec:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 {{- end -}}
 
-{{ if eq .Values.gatewaybridge.backendType "basicstation" }}
+{{ if eq .Values.gatewaybridge.backendType "basic_station" }}
 ---
 apiVersion: v1
 kind: Service

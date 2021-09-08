@@ -26,7 +26,7 @@ spec:
         env:
         - name: BACKEND__TYPE
           value: {{ .Values.gatewaybridge.backendType }}
-{{ if eq .Values.gatewaybridge.backendType "basicstation" }}
+{{ if eq .Values.gatewaybridge.backendType "basic_station" }}
         - name: BACKEND__BASIC_STATION__REGION
           value: {{ .Values.gatewaybridge.regionSettings.region }}
         - name: BACKEND__BASIC_STATION__FREQUENCY_MIN

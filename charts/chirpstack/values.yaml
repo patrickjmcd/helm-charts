@@ -141,12 +141,12 @@ gatewaybridge:
     tag: 3.9.2
     pullPolicy: IfNotPresent
 
-  backendType: basicstation
-  regionSettings: # basicstation only
+  backendType: basic_station
+  regionSettings: # basic_station only
     region: US915
-    frequencyMax: 902000000
-    frequencyMin: 928000000
-    
+    frequencyMax: "902000000" # need quotes around these
+    frequencyMin: "928000000"
+
   integrations:
     mqtt:
       enabled: true
