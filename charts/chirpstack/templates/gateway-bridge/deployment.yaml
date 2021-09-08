@@ -24,7 +24,6 @@ spec:
       - image: {{ printf "%s:%s" .Values.gatewaybridge.image.repository .Values.gatewaybridge.image.tag }}
         name: {{ template "chirpstack.gatewaybridge.fullname" . }}
         env:
-        {{- if .Values.gatewaybridge.integrations.mqtt.enabled -}}
         - name: INTEGRATION__MQTT__AUTH__GENERIC__SERVER
           value: {{ .Values.gatewaybridge.integrations.mqtt.server }}
         - name: INTEGRATION__MQTT__AUTH__GENERIC__USERNAME
@@ -39,11 +38,7 @@ spec:
               name: {{ .Values.gatewaybridge.integrations.mqtt.existingSecret  }}
               key: password
               optional: true
-        {{- end -}}
-        - name: INTEGRATION__MQTT__AUTH__GENERIC__CLIENT_ID
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
+
         ports:
         - containerPort: 1700
           protocol: UDP
