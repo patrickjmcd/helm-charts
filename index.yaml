@@ -48,6 +48,16 @@ entries:
   chirpstack:
   - apiVersion: v1
     appVersion: 3.x
+    created: "2021-09-08T03:36:26.730093475Z"
+    description: Community Helm Chart for chirpstack.io network stack.
+    digest: 50021f364546decd5fcc8cb0df30faa75c706718d21667803bbbd6906420747e
+    icon: https://www.chirpstack.io/static/logo.png
+    name: chirpstack
+    urls:
+    - https://github.com/patrickjmcd/helm-charts/releases/download/chirpstack-0.13.9/chirpstack-0.13.9.tgz
+    version: 0.13.9
+  - apiVersion: v1
+    appVersion: 3.x
     created: "2021-09-08T03:22:26.452124842Z"
     description: Community Helm Chart for chirpstack.io network stack.
     digest: cdb91a1006ca97982a85d36a387cf2895ca584388bbaefcc57791b75855ea75e
@@ -294,4 +304,4 @@ entries:
     urls:
     - https://patrickjmcd.github.io/helm-charts/strapi-0.2.2.tgz
     version: 0.2.2
-generated: "2021-09-08T03:22:26.452176943Z"
+generated: "2021-09-08T03:36:26.730220576Z"
