@@ -141,4 +141,7 @@ gatewaybridge:
     tag: 3.9.2
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    semtech:
+      type: ClusterIP
+    basicstation:
+      type: ClusterIP

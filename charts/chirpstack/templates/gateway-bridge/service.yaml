@@ -2,19 +2,35 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "chirpstack.gatewaybridge.fullname" . }}
+  name: {{ template "chirpstack.gatewaybridge.fullname" . }}-semtech
   labels:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.gatewaybridge.service.type | quote}}
-  {{- if .Values.gatewaybridge.service.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.gatewaybridge.service.loadBalancerIP | quote }}
+  type: {{ .Values.gatewaybridge.service.semtech.type | quote}}
+  {{- if .Values.gatewaybridge.service.semtech.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.gatewaybridge.service.semtech.loadBalancerIP | quote }}
   {{- end }}
   ports:
-  - name: "1700"
+  - name: "semtech"
     port: 1700
     protocol: UDP
     targetPort: 1700
+  selector:
+{{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "chirpstack.gatewaybridge.fullname" . }}-basicstation
+  labels:
+{{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.gatewaybridge.service.basicstation.type | quote}}
+  {{- if .Values.gatewaybridge.service.basicstation.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.gatewaybridge.service.basicstation.loadBalancerIP | quote }}
+  {{- end }}
+  ports:
   - name: "basicstation"
     port: 3100
     protocol: TCP
