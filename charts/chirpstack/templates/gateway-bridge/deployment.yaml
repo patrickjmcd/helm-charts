@@ -54,7 +54,7 @@ spec:
         - containerPort: 1700
           protocol: UDP
 {{ end }}
-{{ if eq .Values.gatewaybridge.backendType "basicstation"}}
+{{ if eq .Values.gatewaybridge.backendType "basic_station"}}
         - containerPort: 3001
           protocol: TCP
 {{ end }}
