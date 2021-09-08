@@ -7,6 +7,9 @@ metadata:
 {{ include "chirpstack.gatewaybridge.labels" . | indent 4 }}
 spec:
   type: {{ .Values.gatewaybridge.service.type | quote}}
+  {{- if .Values.gatewaybridge.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.gatewaybridge.service.loadBalancerIP | quote }}
+  {{- end }}
   ports:
   - name: "1700"
     port: 1700
